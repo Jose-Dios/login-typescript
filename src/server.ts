@@ -1,5 +1,6 @@
 import express from 'express';
-import controller from './login/index.js';
+import authRoutes from './login/routes/auth.routes.js';
+
 
 const app = express();
 const PORT = 3000;
@@ -7,8 +8,8 @@ const PORT = 3000;
 // Middleware para poder leer datos en formato JSON 
 app.use(express.json());
 
-// Ruta base para el Login 
-app.post("/login", controller.login.bind(controller));
+//Ruta global para llamar del login
+app.use('/login', authRoutes);
 
 // Encender el servidor
 app.listen(PORT, () => {

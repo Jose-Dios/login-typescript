@@ -33,3 +33,5 @@
   }
 }
 
+#PASO 5: para levantar en pruebas pon en consola 
+- yarn dev
