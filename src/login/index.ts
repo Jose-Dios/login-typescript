@@ -1,4 +1,5 @@
 import { userRepositoryMemory } from "./repositories/userRepositoryMemory.js";
+import { userRepositorySqlite } from "./repositories/userReposittorySqlite.js";
 import { loginService } from "./services/loginService.js";
 import { loginController } from './controllers/logincontroller.js';
 import { findUserService } from "./services/findUserService.js";
@@ -16,7 +17,7 @@ import { deleteUsuarioController } from "./controllers/deleteUsuarioController.j
 // no de una implementación concreta.
 // Esto permite cambiar la fuente de datos
 // sin modificar la lógica del login.
-const usuarioRepositorio = new userRepositoryMemory();
+const usuarioRepositorio = new userRepositorySqlite();
 
 //ingresar
 const servicelogin = new loginService(usuarioRepositorio);
