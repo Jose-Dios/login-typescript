@@ -5,7 +5,7 @@ export class deleteUsuarioServicio{
         private userRepository: userRepository
     ){}
 
-    async eliminar(id:number){
+    async eliminar(id:string){
         return await this.userRepository.deleteUsuario(id);
     }
 }

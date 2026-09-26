@@ -6,16 +6,16 @@ export class deleteUsuarioController{
 
     async eliminarusuario(req: Request, res: Response){
         const { id } = req.params;
-        const idNumerico = parseInt(id as string, 10);
+        const idCadena = id as string;
 
-        if (isNaN(idNumerico)) {
+        if (!id) {
             return res.status(400).json({
                 mensaje: "El ID proporcionado no es un número válido"
             });
         }
 
         try{
-            const eliminado = await this.deleteusuarioservicio.eliminar(idNumerico);
+            const eliminado = await this.deleteusuarioservicio.eliminar(idCadena);
 
             // Si el servicio devuelve false, significa que el ID no existía en memoria
             if (!eliminado) {

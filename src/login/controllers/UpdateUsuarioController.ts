@@ -7,9 +7,9 @@ export class updateUsuarioController{
 
     async actualizarUsuario(req: Request, res: Response){
         const { id } = req.params;
-        const idNumerico = parseInt(id as string, 10); // Extraemos el /usuarios/:id
+        const idNumerico = id as string; // Extraemos el /usuarios/:id
 
-        if (isNaN(idNumerico)) {
+        if (!idNumerico) {
             return res.status(400).json({
                 mensaje: "El ID proporcionado no es un número válido"
             });

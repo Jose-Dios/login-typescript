@@ -6,7 +6,7 @@ export class updateUsuarioService{
         private userRepository: userRepository
     ){}
 
-    async actualizar(id: number, datos: Partial<Omit<user, 'id'>>){
+    async actualizar(id: string, datos: Partial<Omit<user, 'id'>>){
         return await this.userRepository.updateUsuario(id,datos)
     }
 }

@@ -4,7 +4,7 @@ export class findUserService{
         private userRepository: userRepository
     ){}
 
-    async findByID(id: number){
+    async findByID(id: string){
         return await this.userRepository.buscarPorId(id); 
     }
 

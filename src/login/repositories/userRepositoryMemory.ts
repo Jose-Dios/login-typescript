@@ -6,27 +6,24 @@ export class userRepositoryMemory implements userRepository{
     //Este array es de prueba para probar el comportamiento con un db en caso sea db lo pasas en el constructor
     private usuarios : user[] = [
         {
-            id: 1,
+            id: 'User-1',
             usuario: "jose",
             contra: "123456"
         },
         {
-            id: 2,
+            id: 'User-2',
             usuario: "admin",
             contra: "admin123"
         }        
     ];
 
     // Inicializamos el contador buscando el ID más alto del array de arriba y sumándole 1
-    private idAutoincremental: number = this.usuarios.length > 0 
-        ? Math.max(...this.usuarios.map(u => u.id)) + 1 
-        : 1;
-    
+    private idAutoincremental: number = this.usuarios.length;
 
     async createUsuario(datos: Omit<user, "id">): Promise<user> {
         
         const nuevoUsuario : user = {
-            id: this.idAutoincremental++,
+            id: `User-${this.idAutoincremental++}`,
             ...datos
         }
 
@@ -39,7 +36,7 @@ export class userRepositoryMemory implements userRepository{
         return this.usuarios.find( u => u.usuario === usuario) ?? null;
     }
 
-    async buscarPorId(id: number): Promise<user | null> {
+    async buscarPorId(id: string): Promise<user | null> {
         // Buscamos en tu array de memoria por ID
         return this.usuarios.find(u => u.id === id) ?? null;
     }
@@ -48,7 +45,7 @@ export class userRepositoryMemory implements userRepository{
         return this.usuarios;
     }
 
-    async updateUsuario(id: number, datos: Partial<Omit<user, "id">>): Promise<user | null> {
+    async updateUsuario(id: string, datos: Partial<Omit<user, "id">>): Promise<user | null> {
         const indice = this.usuarios.findIndex(u => u.id === id);
 
         // Si no encuentra el id, devuelve -1
@@ -62,7 +59,7 @@ export class userRepositoryMemory implements userRepository{
         return this.usuarios[indice];
     }
 
-    async deleteUsuario(id: number): Promise<boolean> {
+    async deleteUsuario(id: string): Promise<boolean> {
         const dato = this.usuarios.findIndex(u => u.id === id);
 
         // Si no lo encuentra, avisa que no se pudo borrar

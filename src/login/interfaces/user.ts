@@ -1,6 +1,6 @@
 //Aqui estoy definiendo el usuario
 export interface user{
-    id: number,
+    id: string,
     usuario: string,
     contra: string
 }
